@@ -4,15 +4,20 @@
 
 #include "../../includes/dht.h"
 #include <stdint.h>
+#include <time.h>
+#include "uthash.h"
 
-struct dht_value {
-    uint8_t  pub_key[32];
-    
-};
+typedef struct {
+    uint8_t        pub_key[32];    // chave pública X25519
+    struct in_addr addr;           // IP
+    uint16_t       port;           // porta
+    time_t         expires_at;     // quando este valor expira
+} dht_value_t;
 
-struct dht_entry {
-    uint8_t key[20]; //public X25519 key hashed by SHA-1
-    dht_value* dht_value;
-};
+typedef struct {
+    uint8_t     key[20];           // hash(pub_key) com SHA-1
+    dht_value_t *value;
+    UT_hash_handle hh;             // para o uthash
+} dht_entry_t;
 
 
