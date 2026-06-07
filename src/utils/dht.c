@@ -3,9 +3,9 @@
 //
 
 #include "../../includes/dht.h"
-#include <stdint.h>
 #include <time.h>
-#include "uthash.h"
+#include <arpa/inet.h>
+#include "../../includes/uthash/uthash-master/include/uthash.h"
 
 typedef struct {
     uint8_t        pub_key[32];    // chave pública X25519
